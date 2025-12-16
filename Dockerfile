@@ -1,11 +1,9 @@
-# Sử dụng phiên bản PHP chính thức có sẵn Apache
-FROM php:8.1-apache
+# Dùng bản PHP CLI nhẹ nhàng (Bỏ qua Apache rắc rối)
+FROM php:8.1-cli
 
-# Copy toàn bộ code vào thư mục web của server
-COPY . /var/www/html/
+# Copy code vào thư mục app
+COPY . /app
+WORKDIR /app
 
-# Cấp quyền cho Apache đọc ghi file (để tránh lỗi permission)
-RUN chown -R www-data:www-data /var/www/html
-
-# Mở cổng 80 (Quan trọng!)
-EXPOSE 80
+# Lệnh quan trọng: Chạy server PHP tại đúng cái cổng mà Railway cấp ($PORT)
+CMD php -S 0.0.0.0:$PORT
