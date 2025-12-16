@@ -1,18 +1,19 @@
 <?php
-// 1. Kết nối Database
-$servername = "mysql.railway.internal"; // Lấy từ MYSQLHOST
-$username = "root";                     // Lấy từ MYSQLUSER
-$password = "kADaCjUQQvksZipvQJleOwzneJYrmjFy"; // Mật khẩu dài ngoằng của bạn
-$dbname = "railway";                    // Lấy từ MYSQLDATABASE
+
+// Lấy thông tin từ Variables (Lần này chắc chắn sẽ lấy được!)
+$servername = getenv('DB_HOST');
+$username = getenv('DB_USER');
+$password = getenv('DB_PASS');
+$dbname = getenv('DB_NAME');
 $port = 3306;
 
-// Tạo kết nối
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
-
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("❌ Chết rồi: " . $conn->connect_error);
+// Kiểm tra xem có lấy được biến không (Để debug nếu lỗi)
+if (!$servername || !$password) {
+    die("❌ Lỗi: Backend chưa nhận được biến môi trường. Hãy kiểm tra lại Tab Variables bên Backend!");
 }
+
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
+// ... (Phần dưới giữ nguyên)
 
 // 2. Tạo bảng sản phẩm (Nếu chưa có)
 $sql_table = "CREATE TABLE IF NOT EXISTS products (
