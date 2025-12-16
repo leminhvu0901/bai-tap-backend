@@ -10,8 +10,8 @@ $port       = 3306; // Trong Railway luôn là 3306
 if (!$servername) {
     $servername = "localhost";
     $username = "root";
-    $password = ""; // Mật khẩu XAMPP của bạn
-    $dbname = "ten_db_cua_ban";
+    $password = ""; 
+    $dbname = "thegioididong";
 }
 
 // Tạo kết nối
