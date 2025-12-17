@@ -6,6 +6,9 @@
     <title>Danh sách sản phẩm</title>
 </head>
 <body>
+    <h1>DAY LA WEB RAILWAY HEHEHEHEHE </h1>
+
+
     <h1>Danh sách sản phẩm từ Railway</h1>
     <ul id="list">Đang tải dữ liệu...</ul>
 
@@ -31,5 +34,5 @@
     </script>
 </body>
 
-<h1> LE MINH VU _ DH52201771 hi hi hi </h1>
+
 </html>
