@@ -11,7 +11,7 @@ $dbname = getenv('DB_NAME');
 $port = 3306;
 
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
-
+$conn->set_charset("utf8mb4");
 // Lấy dữ liệu
 $sql = "SELECT * FROM products";
 $result = $conn->query($sql);

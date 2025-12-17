@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # 1. Phần Web (Code PHP của bạn)
+  web:
+    build: .
+    ports:
+      - "8080:8080"    # Mở cổng 8080 (Để khác cổng 8000 của Project 1)
+    environment:
+      - PORT=8080      # Biến môi trường cho lệnh php -S trong Dockerfile
+      - DB_HOST=database
+      - DB_USER=myuser
+      - DB_PASS=mypassword
+      - DB_NAME=project2_db
+    depends_on:
+      - database
+
+  # 2. Phần Database (MySQL)
+  database:
+    image: mysql:8.0
+    container_name: mysql_project2
+    environment:
+      MYSQL_DATABASE: project2_db
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"    # Dùng cổng 3307 để tránh đụng hàng với Project 1
+    volumes:
+      - ./db_data:/docker-entrypoint-initdb.d
